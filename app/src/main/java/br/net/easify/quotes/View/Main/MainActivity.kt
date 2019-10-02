@@ -1,7 +1,8 @@
-package br.net.easify.quotes
+package br.net.easify.quotes.View.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.net.easify.quotes.R
 
 class MainActivity : AppCompatActivity() {
 
