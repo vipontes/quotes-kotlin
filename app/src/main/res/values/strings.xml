@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">quotes</string>
+    <string name="app_name">Quotes</string>
+
+
+    <string name="login_required_fields">Os campos e-mail e senha devem ser informados</string>
+
+
+
 </resources>
