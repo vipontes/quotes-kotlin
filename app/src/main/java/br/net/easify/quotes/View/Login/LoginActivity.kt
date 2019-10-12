@@ -18,10 +18,17 @@ class LoginActivity : AppCompatActivity() {
     private val tokensObserver = Observer<Login> {res: Login ->
         res?.let {
 
-
-            //Log.e("Token", res.toString())
         }
     }
+
+    private val errorMessageObserver = Observer<String> {res: String ->
+        res?.let {
+            if ( !res.isEmpty() ) {
+                Toast.makeText(this, viewModel.errorMessage.value, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         viewModel.tokens.observe(this, tokensObserver)
+        viewModel.errorMessage.observe(this, errorMessageObserver)
 
         btnLogin.setOnClickListener {
 

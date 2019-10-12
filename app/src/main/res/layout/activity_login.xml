@@ -49,7 +49,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="E-mail"
-                                android:inputType="textEmailAddress"/>
+                                android:inputType="textEmailAddress|textNoSuggestions"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -78,7 +78,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="50dp"
                             android:layout_marginRight="50dp"
-                            android:layout_marginBottom="30dp"
+                            android:layout_marginBottom="24dp"
                             android:background="@drawable/default_button"
                             android:padding="18dp"
                             android:text="Entrar"
@@ -89,7 +89,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="horizontal"
-                            android:paddingBottom="50dp">
+                            android:paddingBottom="24dp">
 
                         <TextView
                                 android:layout_width="wrap_content"

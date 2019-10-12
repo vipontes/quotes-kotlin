@@ -10,6 +10,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import retrofit2.adapter.rxjava2.Result.response
+import android.R.string
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import retrofit2.HttpException
+import okhttp3.ResponseBody
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.google.gson.Gson
+import com.google.gson.JsonParser
+
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -17,6 +26,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val disposable = CompositeDisposable()
 
     val tokens by lazy { MutableLiveData<Login>() }
+    val errorMessage by lazy { MutableLiveData<String>() }
 
     fun login(email: String, senha: String, device: String) {
         checkLogin(email, senha, device)
@@ -29,11 +39,23 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<Login>() {
                     override fun onSuccess(res: Login) {
-                        tokens.value = res;
+                        tokens.value = res
+                        errorMessage.value = ""
                     }
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
+
+                        if (e is HttpException) {
+                            val errorJsonString = e.response().errorBody()?.string()
+                            val message = JsonParser().parse(errorJsonString)
+                                .asJsonObject["message"]
+                                .asString
+
+                            errorMessage.value = message
+                        } else {
+                            errorMessage.value = "Internal error"
+                        }
                     }
                 })
         )
