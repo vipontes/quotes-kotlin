@@ -1,7 +1,6 @@
 package br.net.easify.quotes.ViewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import br.net.easify.quotes.Model.Login
@@ -10,15 +9,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-import retrofit2.adapter.rxjava2.Result.response
-import android.R.string
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import retrofit2.HttpException
-import okhttp3.ResponseBody
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import com.google.gson.Gson
 import com.google.gson.JsonParser
-
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -30,6 +22,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     fun login(email: String, senha: String, device: String) {
         checkLogin(email, senha, device)
+    }
+
+    fun refreshToken(refreshToken: String) {
+        checkRefreshToken(refreshToken)
     }
 
     private fun checkLogin(email: String, senha: String, device: String) {
@@ -61,10 +57,37 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
-    override fun onCleared() {
-        super.onCleared()
+    private fun checkRefreshToken(refreshToken: String) {
+        disposable.add(
+            loginService.refreshToken(refreshToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<Login>() {
+                    override fun onSuccess(res: Login) {
+                        tokens.value = res
+                        errorMessage.value = ""
+                    }
 
-        disposable.clear()
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+
+                        if (e is HttpException) {
+                            val errorJsonString = e.response().errorBody()?.string()
+                            val message = JsonParser().parse(errorJsonString)
+                                .asJsonObject["message"]
+                                .asString
+
+                            errorMessage.value = message
+                        } else {
+                            errorMessage.value = "Internal error"
+                        }
+                    }
+                })
+        )
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
+    }
 }

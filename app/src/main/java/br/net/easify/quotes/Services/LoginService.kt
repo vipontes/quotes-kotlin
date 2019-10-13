@@ -3,6 +3,7 @@ package br.net.easify.quotes.Services
 import br.net.easify.quotes.Interfaces.ILogin
 import br.net.easify.quotes.Model.Login
 import br.net.easify.quotes.Model.LoginData
+import br.net.easify.quotes.Model.RefreshTokenData
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -24,4 +25,12 @@ class LoginService {
         val loginData = LoginData(email, senha, device)
         return api.login(loginData)
     }
+
+    fun refreshToken(refreshToken: String): Single<Login> {
+
+        val refreshToken = RefreshTokenData(refreshToken)
+        return api.refreshToken(refreshToken)
+    }
+
+
 }
