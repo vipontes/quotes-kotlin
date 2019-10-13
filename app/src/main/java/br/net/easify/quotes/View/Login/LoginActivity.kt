@@ -12,6 +12,7 @@ import br.net.easify.quotes.R
 import br.net.easify.quotes.Database.AppDatabase
 import br.net.easify.quotes.Utils.JWTUtils
 import br.net.easify.quotes.View.Main.MainActivity
+import br.net.easify.quotes.View.NewAccount.NewAccountActivity
 import br.net.easify.quotes.ViewModel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -100,6 +101,11 @@ class LoginActivity : AppCompatActivity() {
             val device = android.os.Build.DEVICE
 
             viewModel.login(email, senha, device)
+        }
+
+        txtCadastre.setOnClickListener {
+            var newAccountActivity = Intent(this, NewAccountActivity::class.java)
+            startActivity(newAccountActivity)
         }
     }
 

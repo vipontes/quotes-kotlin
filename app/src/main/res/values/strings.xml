@@ -3,7 +3,14 @@
 
 
     <string name="login_required_fields">Os campos e-mail e senha devem ser informados</string>
+    <string name="new_account_required_fields">Todos os campos devem ser informados</string>
 
+    <string name="new_account_caption">Preencha os dados abaixo para criar sua conta</string>
 
+    <string name="button_login">Login</string>
+    <string name="button_new_account">Criar nova conta</string>
+
+    <string name="not_client_yet">"Não possui uma conta?"</string>
+    <string name="cadastre_se">"Cadastre-se"</string>
 
 </resources>

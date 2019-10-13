@@ -13,5 +13,4 @@ interface ILogin {
 
     @POST("refresh-token")
     fun refreshToken(@Body data: RefreshTokenData): Single<Login>
-
 }

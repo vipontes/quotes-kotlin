@@ -20,7 +20,9 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
         <activity android:name=".View.Main.MainActivity"></activity>
+
         <activity
                 android:name=".View.Login.LoginActivity"
                 android:configChanges="screenLayout|orientation|screenSize"
@@ -28,15 +30,16 @@
                 android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity android:name=".View.NewAccount.NewAccountActivity"
                   android:configChanges="screenLayout|orientation|screenSize"
                   android:theme="@style/AppTheme.Login"
                   android:windowSoftInputMode="stateHidden|adjustPan">
         </activity>
+
     </application>
 
 </manifest>

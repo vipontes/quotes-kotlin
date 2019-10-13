@@ -81,7 +81,7 @@
                             android:layout_marginBottom="24dp"
                             android:background="@drawable/default_button"
                             android:padding="18dp"
-                            android:text="Entrar"
+                            android:text="@string/button_login"
                             android:textColor="@color/colorLight"/>
 
                     <LinearLayout
@@ -96,9 +96,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:gravity="center"
-                                android:text="Não possui uma conta?"
+                                android:text="@string/not_client_yet"
                                 android:textColor="@color/colorTextGray"
-                                android:textSize="16dp"/>
+                                android:textAllCaps="true"
+                                android:textSize="14dp"/>
 
                         <TextView
                                 android:id="@+id/txtCadastre"
@@ -106,9 +107,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:gravity="center"
-                                android:text="Cadastre-se"
+                                android:text="@string/cadastre_se"
                                 android:textColor="@color/colorPrimary"
-                                android:textSize="16dp"/>
+                                android:textAllCaps="true"
+                                android:textSize="14dp"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

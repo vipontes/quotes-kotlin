@@ -4,6 +4,7 @@ import br.net.easify.quotes.Interfaces.ILogin
 import br.net.easify.quotes.Model.Login
 import br.net.easify.quotes.Model.LoginData
 import br.net.easify.quotes.Model.RefreshTokenData
+import br.net.easify.quotes.Utils.Constants
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -11,10 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginService {
 
-    private val API_URL = "http://quotes.easify.info/v1/"
-
     private val api = Retrofit.Builder()
-        .baseUrl(API_URL)
+        .baseUrl(Constants.apiUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
