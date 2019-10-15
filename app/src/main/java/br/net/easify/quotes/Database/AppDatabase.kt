@@ -7,11 +7,14 @@ import androidx.room.RoomDatabase
 import br.net.easify.quotes.Database.DAO.ITokenDao
 import br.net.easify.quotes.Database.Entities.Token
 import android.icu.lang.UCharacter.GraphemeClusterBreak.V
+import br.net.easify.quotes.Database.DAO.IUsuarioDao
+import br.net.easify.quotes.Database.Entities.UsuarioLogado
 
-@Database(entities = [Token::class], version = 1)
+@Database(entities = [Token::class, UsuarioLogado::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun tokenDao(): ITokenDao
+    abstract fun usuarioDao(): IUsuarioDao
 
     companion object {
         var INSTANCE: AppDatabase? = null

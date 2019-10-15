@@ -22,15 +22,9 @@ import java.util.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var viewModel: LoginViewModel
-    private lateinit var db: AppDatabase
 
-    private val tokensObserver = Observer<Login> { res: Login ->
-        res.let {
-            val token = Token(1, it.token, it.refreshToken)
-            db.tokenDao().insertOrUpdate(token)
-
-            startMainActivity()
-        }
+    private val tokensObserver = Observer<Login> {
+        startMainActivity()
     }
 
     private val errorMessageObserver = Observer<String> { res: String ->
@@ -47,39 +41,11 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         viewModel.tokens.observe(this, tokensObserver)
         viewModel.errorMessage.observe(this, errorMessageObserver)
-
-        db = AppDatabase.getAppDataBase(this)!!
-        var token = db.tokenDao().getToken()
-
-        var tokenDecoded: JSONObject? = null
-        token?.let {
-            val decoder = JWTUtils()
-            tokenDecoded = decoder.decodeBody(it.token)
-        }
-
-        if (tokenDecoded != null) {
-
-            // 1- Verifica a data de expiração do token
-            var expiredAt = ""
-            tokenDecoded?.get("expired_at")?.let {
-                expiredAt = it.toString()
-            }
-
-            if (!expiredAt.isEmpty()) {
-
-                val current = Date()
-                var parsedDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(expiredAt)
-
-                if (parsedDate < current) {
-                    // Token expirou, valida o refresh token
-                    token?.let {
-                        viewModel.refreshToken(it.refreshToken)
-                    }
-                } else {
-                    startMainActivity()
-                    return
-                }
-            }
+        if ( !viewModel.validateToken() ) {
+            viewModel.refreshToken()
+        } else {
+            startMainActivity()
+            return
         }
 
         initializeLayout()
