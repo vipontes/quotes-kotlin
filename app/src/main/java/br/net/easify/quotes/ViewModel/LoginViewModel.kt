@@ -69,7 +69,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
             if (!expiredAt.isEmpty()) {
 
-                val current = Date()
+                val current = Date()!!
                 var parsedDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(expiredAt)
 
                 return (parsedDate > current)

@@ -4,21 +4,21 @@ import com.google.gson.annotations.SerializedName
 
 data class Usuario (
 
-    @SerializedName("usuario_id")
+    @SerializedName("usuarioId")
     val usuarioId: Int = 0,
 
-    @SerializedName("usuario_nome")
+    @SerializedName("usuarioNome")
     val usuarioNome: String = "",
 
-    @SerializedName("usuario_email")
+    @SerializedName("usuarioEmail")
     val usuarioEmail: String = "",
 
-    @SerializedName("usuario_senha")
+    @SerializedName("usuarioSenha")
     val usuarioSenha: String = "",
 
-    @SerializedName("usuario_ativo")
+    @SerializedName("usuarioAtivo")
     val usuarioAtivo: Int = 1,
 
-    @SerializedName("usuario_sobre")
+    @SerializedName("usuarioSobre")
     val usuarioSobre: String = ""
 )
