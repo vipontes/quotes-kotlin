@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/quotes_nav"
+            app:startDestination="@id/quotesListFragment">
+
+    <fragment android:id="@+id/quotesListFragment"
+              android:name="br.net.easify.quotes.View.QuotesList.QuotesListFragment"
+              android:label="fragment_quotes_list" tools:layout="@layout/fragment_quotes_list">
+        <action android:id="@+id/actionNewQuote" app:destination="@id/newQuoteFragment"/>
+    </fragment>
+    <fragment android:id="@+id/newQuoteFragment" android:name="br.net.easify.quotes.View.NewQuote.NewQuoteFragment"
+              android:label="fragment_new_quote" tools:layout="@layout/fragment_new_quote">
+        <action android:id="@+id/actionQuotesList"
+                app:destination="@id/quotesListFragment"/>
+    </fragment>
+</navigation>

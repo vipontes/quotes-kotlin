@@ -12,6 +12,7 @@ import br.net.easify.quotes.Model.Usuario
 import br.net.easify.quotes.Services.LoginService
 import br.net.easify.quotes.Services.UsuarioService
 import br.net.easify.quotes.Utils.JWTUtils
+import br.net.easify.quotes.Utils.TokenUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -51,32 +52,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun validateToken(): Boolean {
-        var token = db.tokenDao().getToken()
-
-        var tokenDecoded: JSONObject? = null
-        token?.let {
-            val decoder = JWTUtils()
-            tokenDecoded = decoder.decodeBody(it.token)
-        }
-
-        if (tokenDecoded != null) {
-
-            // Verifica a data de expiração do token
-            var expiredAt = ""
-            tokenDecoded?.get("expired_at")?.let {
-                expiredAt = it.toString()
-            }
-
-            if (!expiredAt.isEmpty()) {
-
-                val current = Date()!!
-                var parsedDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(expiredAt)
-
-                return (parsedDate > current)
-            }
-        }
-
-        return false
+        val tokenUtils = TokenUtils(getApplication())
+        return tokenUtils.validateToken()
     }
 
     private fun checkLogin(email: String, senha: String, device: String) {
