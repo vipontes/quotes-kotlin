@@ -19,4 +19,9 @@ class QuoteService {
     fun getQuotes(token: String): Single<List<Quote>> {
         return api.getQuotes(token)
     }
+
+    fun insertQuote(quote: Quote, token: String): Single<Int> {
+        return api.insertQuote(quote, token)
+    }
+
 }

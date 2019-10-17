@@ -29,16 +29,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val usuarioService = UsuarioService()
     private val disposable = CompositeDisposable()
 
-    private lateinit var db: AppDatabase
+    private var db = AppDatabase.getAppDataBase(application)!!
 
     val tokens by lazy { MutableLiveData<Login>() }
     val errorMessage by lazy { MutableLiveData<String>() }
-
-    init {
-        if ( !::db.isInitialized ) {
-            db = AppDatabase.getAppDataBase(application)!!
-        }
-    }
 
     fun login(email: String, senha: String, device: String) {
         checkLogin(email, senha, device)

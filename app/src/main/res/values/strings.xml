@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">Quotes</string>
 
+    <string name="quote_content_error">Por favor digite alguma coisa</string>
+    <string name="quote_save_error">Não foi possível gravar o registro</string>
 
     <string name="login_required_fields">Os campos e-mail e senha devem ser informados</string>
     <string name="new_account_required_fields">Todos os campos devem ser informados</string>
 
     <string name="new_account_caption">Preencha os dados abaixo para criar sua conta</string>
 
+    <string name="button_save">Save it</string>
     <string name="button_login">Login</string>
     <string name="button_new_account">Criar nova conta</string>
 

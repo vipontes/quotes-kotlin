@@ -2,11 +2,17 @@ package br.net.easify.quotes.Interfaces
 
 import br.net.easify.quotes.Model.Quote
 import io.reactivex.Single
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 
 interface IQuote {
 
     @GET("quotes")
     fun getQuotes(@Header("Authorization") token: String): Single<List<Quote>>
+
+    @POST("quote")
+    fun insertQuote(@Body data: Quote, @Header("Authorization") token: String): Single<Int>
+
 }
