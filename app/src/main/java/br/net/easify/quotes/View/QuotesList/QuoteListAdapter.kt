@@ -26,10 +26,7 @@ class QuoteListAdapter(private val quoteList: ArrayList<Quote>): RecyclerView.Ad
 
     override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
         holder.view.description.text = quoteList[position].quoteConteudo
-//        holder.view.animalLayout.setOnClickListener {
-//            val action = ListFragmentDirections.actionDetail(animalList[position])
-//            Navigation.findNavController(holder.view).navigate(action)
-//        }
+        holder.view.author.text = quoteList[position].usuarioNome
     }
 
     class QuoteViewHolder(var view: View): RecyclerView.ViewHolder(view)

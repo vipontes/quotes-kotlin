@@ -30,6 +30,4 @@ class LoginService {
         val refreshToken = RefreshTokenData(refreshToken)
         return api.refreshToken(refreshToken)
     }
-
-
 }

@@ -9,6 +9,5 @@ interface IUsuario {
     fun insertUser(@Body data: Usuario): Single<Usuario>
 
     @GET("usuario/{usuarioId}")
-    fun getUser(@Path("usuarioId") usuarioId: Int,
-                @Header("Authorization") token: String): Single<Usuario>
+    fun getUser(@Path("usuarioId") usuarioId: Int): Single<Usuario>
 }

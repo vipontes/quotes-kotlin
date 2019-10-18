@@ -14,7 +14,7 @@ import retrofit2.HttpException
 
 class NewAccountViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val usuarioService = UsuarioService()
+    private val usuarioService = UsuarioService(application)
     private val disposable = CompositeDisposable()
 
     val usuarioId by lazy { MutableLiveData<Int>() }

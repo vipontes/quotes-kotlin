@@ -26,7 +26,7 @@ import java.util.*
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     private val loginService = LoginService()
-    private val usuarioService = UsuarioService()
+    private val usuarioService = UsuarioService(application)
     private val disposable = CompositeDisposable()
 
     private var db = AppDatabase.getAppDataBase(application)!!
@@ -100,7 +100,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
             if (usuarioId > 0) {
                 disposable.add(
-                    usuarioService.getUser(usuarioId, "Bearer $token")
+                    usuarioService.getUser(usuarioId)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(object : DisposableSingleObserver<Usuario>() {
@@ -137,6 +137,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                     override fun onSuccess(res: Login) {
                         tokens.value = res
                         errorMessage.value = ""
+
+                        val token = Token(1, res.token, res.refreshToken)
+                        db.tokenDao().insertOrUpdate(token)
+
+                        saveUserData(res.token)
                     }
 
                     override fun onError(e: Throwable) {

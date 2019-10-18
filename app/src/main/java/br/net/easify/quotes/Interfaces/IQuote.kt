@@ -10,9 +10,9 @@ import retrofit2.http.POST
 interface IQuote {
 
     @GET("quotes")
-    fun getQuotes(@Header("Authorization") token: String): Single<List<Quote>>
+    fun getQuotes(): Single<List<Quote>>
 
     @POST("quote")
-    fun insertQuote(@Body data: Quote, @Header("Authorization") token: String): Single<Int>
+    fun insertQuote(@Body data: Quote): Single<Int>
 
 }

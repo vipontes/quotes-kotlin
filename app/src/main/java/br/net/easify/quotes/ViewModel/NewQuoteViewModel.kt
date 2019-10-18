@@ -16,7 +16,7 @@ import org.json.JSONObject
 
 class NewQuoteViewModel (application: Application) : AndroidViewModel(application) {
 
-    private val quoteService = QuoteService()
+    private val quoteService = QuoteService(application)
     private val disposable = CompositeDisposable()
     private var db = AppDatabase.getAppDataBase(application)!!
 
@@ -51,11 +51,8 @@ class NewQuoteViewModel (application: Application) : AndroidViewModel(applicatio
 
     private fun insertQuote(quote: Quote) {
 
-        val tokens = db.tokenDao().getToken()
-        val token = tokens?.token
-
         disposable.add(
-            quoteService.insertQuote(quote, "Bearer $token")
+            quoteService.insertQuote(quote)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<Int>() {
@@ -65,13 +62,9 @@ class NewQuoteViewModel (application: Application) : AndroidViewModel(applicatio
                     }
 
                     override fun onError(e: Throwable) {
-                        val tokenUtils = TokenUtils(getApplication())
-                        if ( tokenUtils.validateToken() ) {
-
-                        } else {
-                            e.printStackTrace()
-                            error.value = true
-                        }
+                        e.printStackTrace()
+                        quoteId.value = 0
+                        error.value = true
                     }
                 })
         )

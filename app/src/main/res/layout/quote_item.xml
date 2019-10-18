@@ -19,16 +19,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/author"
+                        android:text="####"
+                        android:textColor="@color/colorTextLightGray"
+                        android:textSize="14dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" escreveu:"
+                        android:textColor="@color/colorTextLightGray"
+                        android:textSize="14dp"/>
+            </LinearLayout>
+
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/description"
+                    android:textColor="@color/colorTextGray"
                     android:text="####"
-                    android:layout_margin="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="4dp"
                     android:textSize="18dp"/>
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginHorizontal="12dp"
                     android:background="@android:color/darker_gray"/>
 
             <LinearLayout
@@ -48,7 +74,7 @@
                             android:src="@drawable/ic_thumb_up"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="@color/colorPrimary"
+                            android:tint="@color/colorTextGray"
                     />
 
                     <TextView android:layout_width="wrap_content"
