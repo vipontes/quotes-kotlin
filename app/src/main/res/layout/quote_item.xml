@@ -68,6 +68,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_margin="8dp"
+                        android:id="@+id/gostei"
                         android:orientation="horizontal">
 
                     <ImageView
@@ -90,6 +91,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_margin="8dp"
+                        android:id="@+id/naoGostei"
                         android:orientation="horizontal">
 
                     <ImageView

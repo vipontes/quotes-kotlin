@@ -1,8 +1,11 @@
 package br.net.easify.quotes.View.QuotesList
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import br.net.easify.quotes.Model.Quote
 import br.net.easify.quotes.R
@@ -29,5 +32,32 @@ class QuoteListAdapter(private val quoteList: ArrayList<Quote>): RecyclerView.Ad
         holder.view.author.text = quoteList[position].usuarioNome
     }
 
-    class QuoteViewHolder(var view: View): RecyclerView.ViewHolder(view)
+    inner class QuoteViewHolder(var view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        protected lateinit var gostei: LinearLayout
+        protected lateinit var naoGostei: LinearLayout
+
+        init {
+            gostei = itemView.findViewById(R.id.gostei) as LinearLayout
+            naoGostei = itemView.findViewById(R.id.naoGostei) as LinearLayout
+            gostei.setOnClickListener(this)
+            naoGostei.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+
+            val item = this.adapterPosition
+            val content = quoteList[item].quoteConteudo
+
+            if (v!!.id == gostei.id) {
+
+                Log.w("Message", "gostei ${content}")
+
+            } else if (v.id == naoGostei.id)  {
+
+                Log.w("Message", "não gostei ${content}")
+
+            }
+        }
+    }
 }
