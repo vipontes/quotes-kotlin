@@ -1,6 +1,7 @@
 package br.net.easify.quotes.Interfaces
 
 import br.net.easify.quotes.Model.Quote
+import br.net.easify.quotes.Model.QuoteReacao
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,4 +16,6 @@ interface IQuote {
     @POST("quote")
     fun insertQuote(@Body data: Quote): Single<Int>
 
+    @POST("quote-reacao")
+    fun quoteReacao(@Body data: QuoteReacao): Single<QuoteReacao>
 }

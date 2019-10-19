@@ -7,7 +7,6 @@ import br.net.easify.quotes.Database.AppDatabase
 import br.net.easify.quotes.Model.Quote
 import br.net.easify.quotes.Services.QuoteService
 import br.net.easify.quotes.Utils.JWTUtils
-import br.net.easify.quotes.Utils.TokenUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -42,7 +41,7 @@ class NewQuoteViewModel (application: Application) : AndroidViewModel(applicatio
 
             if (usuarioId > 0) {
 
-                var quote = Quote(0, usuarioId, "", content, 0, 0, "", "")
+                var quote = Quote(0, usuarioId, "", content, 0, 0, "", "", 0, 0)
                 this.insertQuote(quote)
                 return
             }

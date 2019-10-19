@@ -1,17 +1,20 @@
 package br.net.easify.quotes.View.QuotesList
 
-import android.util.Log
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import br.net.easify.quotes.Model.Quote
 import br.net.easify.quotes.R
+import br.net.easify.quotes.Utils.Constants
+import br.net.easify.quotes.ViewModel.QuoteListViewModel
 import kotlinx.android.synthetic.main.quote_item.view.*
 
-class QuoteListAdapter(private val quoteList: ArrayList<Quote>): RecyclerView.Adapter<QuoteListAdapter.QuoteViewHolder>() {
+class QuoteListAdapter(private val viewModel: QuoteListViewModel,
+                       private val quoteList: ArrayList<Quote>)
+    : RecyclerView.Adapter<QuoteListAdapter.QuoteViewHolder>() {
 
     fun update(newQuoteList: List<Quote>) {
         quoteList.clear()
@@ -30,12 +33,14 @@ class QuoteListAdapter(private val quoteList: ArrayList<Quote>): RecyclerView.Ad
     override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
         holder.view.description.text = quoteList[position].quoteConteudo
         holder.view.author.text = quoteList[position].usuarioNome
+        holder.view.gosteiQtd.text = quoteList[position].quoteGostei.toString()
+        holder.view.naoGosteiQtd.text = quoteList[position].quoteNaoGostei.toString()
     }
 
     inner class QuoteViewHolder(var view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
 
-        protected lateinit var gostei: LinearLayout
-        protected lateinit var naoGostei: LinearLayout
+        protected var gostei: LinearLayout
+        protected var naoGostei: LinearLayout
 
         init {
             gostei = itemView.findViewById(R.id.gostei) as LinearLayout
@@ -47,16 +52,14 @@ class QuoteListAdapter(private val quoteList: ArrayList<Quote>): RecyclerView.Ad
         override fun onClick(v: View?) {
 
             val item = this.adapterPosition
-            val content = quoteList[item].quoteConteudo
+
+            var usuarioId = viewModel.getUserId()
+            val quoteId: Int = quoteList[item].quoteId!!
 
             if (v!!.id == gostei.id) {
-
-                Log.w("Message", "gostei ${content}")
-
+                viewModel.reacao(usuarioId, quoteId, Constants.reacaoGostei)
             } else if (v.id == naoGostei.id)  {
-
-                Log.w("Message", "não gostei ${content}")
-
+                viewModel.reacao(usuarioId, quoteId, Constants.reacaoNaoGostei)
             }
         }
     }

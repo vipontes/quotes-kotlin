@@ -12,6 +12,7 @@ import br.net.easify.quotes.Model.Usuario
 import br.net.easify.quotes.Services.LoginService
 import br.net.easify.quotes.Services.UsuarioService
 import br.net.easify.quotes.Utils.JWTUtils
+import br.net.easify.quotes.Utils.SharedPreferencesHelper
 import br.net.easify.quotes.Utils.TokenUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -28,6 +29,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val loginService = LoginService()
     private val usuarioService = UsuarioService(application)
     private val disposable = CompositeDisposable()
+
+    private val prefs = SharedPreferencesHelper(getApplication())
 
     private var db = AppDatabase.getAppDataBase(application)!!
 
@@ -99,6 +102,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             if (usuarioId > 0) {
+                prefs.setUserId(usuarioId)
+
                 disposable.add(
                     usuarioService.getUser(usuarioId)
                         .subscribeOn(Schedulers.newThread())

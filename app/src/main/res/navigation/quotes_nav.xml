@@ -8,10 +8,16 @@
               android:name="br.net.easify.quotes.View.QuotesList.QuotesListFragment"
               android:label="Quotes!" tools:layout="@layout/fragment_quotes_list">
         <action android:id="@+id/actionNewQuote" app:destination="@id/newQuoteFragment"/>
+        <action android:id="@+id/actionProfile" app:destination="@id/profileFragment"/>
     </fragment>
     <fragment android:id="@+id/newQuoteFragment" android:name="br.net.easify.quotes.View.NewQuote.NewQuoteFragment"
               android:label="Cancel" tools:layout="@layout/fragment_new_quote">
         <action android:id="@+id/actionQuotesList"
+                app:destination="@id/quotesListFragment"/>
+    </fragment>
+    <fragment android:id="@+id/profileFragment" android:name="br.net.easify.quotes.View.Profile.ProfileFragment"
+              android:label="Cancel" tools:layout="@layout/fragment_profile">
+        <action android:id="@+id/actionReturnFromProfile"
                 app:destination="@id/quotesListFragment"/>
     </fragment>
 </navigation>

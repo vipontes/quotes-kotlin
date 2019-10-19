@@ -4,6 +4,7 @@ import android.content.Context
 import br.net.easify.quotes.Database.AppDatabase
 import br.net.easify.quotes.Interfaces.IQuote
 import br.net.easify.quotes.Model.Quote
+import br.net.easify.quotes.Model.QuoteReacao
 import br.net.easify.quotes.Utils.Constants
 import io.reactivex.Single
 import okhttp3.OkHttpClient
@@ -36,6 +37,10 @@ class QuoteService(context: Context) {
 
     fun insertQuote(quote: Quote): Single<Int> {
         return api.insertQuote(quote)
+    }
+
+    fun quoteReacao(quoteReacao: QuoteReacao): Single<QuoteReacao> {
+        return api.quoteReacao(quoteReacao)
     }
 
 }

@@ -51,6 +51,76 @@
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginBottom="4dp"
                     android:textSize="18dp"/>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:orientation="horizontal">
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|center_vertical"
+                        android:layout_margin="4dp"
+                        android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            app:cardBackgroundColor="@color/colorPrimary"
+                            app:cardCornerRadius="12dp">
+
+                        <ImageView
+                                android:src="@drawable/ic_thumb_up"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center_vertical|center"
+                                android:tint="@color/colorLight"
+                        />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/gosteiQtd"
+                              android:layout_marginLeft="2dp"
+                              android:textSize="16dp"
+                              android:text="Gostei"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            app:cardBackgroundColor="@color/colorPrimary"
+                            app:cardCornerRadius="12dp">
+
+                        <ImageView
+                                android:src="@drawable/ic_thumb_down"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center_vertical|center"
+                                android:tint="@color/colorLight"
+                        />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/naoGosteiQtd"
+                              android:layout_marginLeft="2dp"
+                              android:textSize="16dp"
+                              android:text="Não Gostei"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

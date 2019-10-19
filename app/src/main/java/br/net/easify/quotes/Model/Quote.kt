@@ -8,5 +8,7 @@ data class Quote(
     val quoteConteudoOfensivo: Int?,
     val quoteUsuarioConteudoOfensivoId: Int?,
     val usuarioNome: String?,
-    val usuarioDenunciaNome: String?
+    val usuarioDenunciaNome: String?,
+    val quoteGostei: Int?,
+    val quoteNaoGostei: Int?
 )

@@ -14,8 +14,6 @@ import br.net.easify.quotes.R
 import br.net.easify.quotes.ViewModel.NewQuoteViewModel
 import kotlinx.android.synthetic.main.fragment_new_quote.*
 
-
-
 class NewQuoteFragment : Fragment() {
 
     private lateinit var viewModel: NewQuoteViewModel
