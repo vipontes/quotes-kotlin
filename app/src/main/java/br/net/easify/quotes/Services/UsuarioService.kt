@@ -3,6 +3,7 @@ package br.net.easify.quotes.Services
 import android.content.Context
 import br.net.easify.quotes.Database.AppDatabase
 import br.net.easify.quotes.Interfaces.IUsuario
+import br.net.easify.quotes.Model.ApiResult
 import br.net.easify.quotes.Model.Usuario
 import br.net.easify.quotes.Utils.Constants
 import io.reactivex.Single
@@ -34,6 +35,9 @@ class UsuarioService(context: Context) {
         return api.insertUser(usuario)
     }
 
+    fun updateUser(usuario: Usuario): Single<ApiResult> {
+        return api.updateUser(usuario)
+    }
     fun getUser(usuarioId: Int): Single<Usuario> {
         return api.getUser(usuarioId)
     }

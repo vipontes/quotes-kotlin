@@ -9,6 +9,8 @@
 
     <string name="new_account_caption">Preencha os dados abaixo para criar sua conta</string>
 
+    <string name="button_update">Update</string>
+
     <string name="button_save">Save it</string>
     <string name="button_login">Login</string>
     <string name="button_new_account">Criar nova conta</string>

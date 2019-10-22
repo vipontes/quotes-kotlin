@@ -113,11 +113,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                                 var usuarioLogado = UsuarioLogado(
                                     usuario.usuarioId,
                                     usuario.usuarioNome,
-                                    usuario.usuarioEmail,
-                                    usuario.usuarioSenha,
-                                    usuario.usuarioAtivo,
-                                    usuario.usuarioSobre
-                                )
+                                    usuario.usuarioEmail)
+
+                                usuarioLogado.usuarioSenha = usuario.usuarioSenha!!
+                                usuarioLogado.usuarioAtivo = usuario.usuarioAtivo!!
+                                usuarioLogado.usuarioSobre = usuario.usuarioSobre!!
 
                                 db.usuarioDao().insertUsuario(usuarioLogado)
                             }

@@ -11,25 +11,25 @@ data class UsuarioLogado (
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "usuario_id")
-    val usuarioId: Int = 0,
+    var usuarioId: Int = 0,
 
     @NonNull
     @ColumnInfo(name = "usuario_nome")
-    val usuarioNome: String = "",
+    var usuarioNome: String = "",
 
     @NonNull
     @ColumnInfo(name = "usuario_email")
-    val usuarioEmail: String = "",
+    var usuarioEmail: String = "",
 
     @NonNull
     @ColumnInfo(name = "usuario_senha")
-    val usuarioSenha: String = "",
+    var usuarioSenha: String = "",
 
     @NonNull
     @ColumnInfo(name = "usuario_ativo")
-    val usuarioAtivo: Int = 1,
+    var usuarioAtivo: Int = 1,
 
     @NonNull
     @ColumnInfo(name = "usuario_sobre")
-    val usuarioSobre: String = ""
+    var usuarioSobre: String = ""
 )

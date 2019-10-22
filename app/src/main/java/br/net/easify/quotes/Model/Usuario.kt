@@ -5,20 +5,20 @@ import com.google.gson.annotations.SerializedName
 data class Usuario (
 
     @SerializedName("usuarioId")
-    val usuarioId: Int = 0,
+    var usuarioId: Int = 0,
 
     @SerializedName("usuarioNome")
-    val usuarioNome: String = "",
+    var usuarioNome: String = "",
 
     @SerializedName("usuarioEmail")
-    val usuarioEmail: String = "",
+    var usuarioEmail: String = "",
 
     @SerializedName("usuarioSenha")
-    val usuarioSenha: String = "",
+    var usuarioSenha: String? = "",
 
     @SerializedName("usuarioAtivo")
-    val usuarioAtivo: Int = 1,
+    var usuarioAtivo: Int? = 1,
 
     @SerializedName("usuarioSobre")
-    val usuarioSobre: String = ""
+    var usuarioSobre: String? = ""
 )
